@@ -4,9 +4,11 @@ $(document).ready(function() {
   data = {};
 
   // localstorage things
+  
   $('#save').on('click', function() {
     localStorage.setItem('save', JSON.stringify(data));
     localStorage.setItem('count', count);
+    alert('saved')
   })
 
   $('#clear').on('click', function() { 
@@ -15,6 +17,7 @@ $(document).ready(function() {
     $('#list').html('');
     data = {};
     count = 0;
+    alert('cleared')
   })
 
   function loadFromlocalStorage() {
