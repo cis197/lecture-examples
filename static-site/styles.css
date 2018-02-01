@@ -1,0 +1,19 @@
+strong {
+  color: red;
+}
+
+body {
+  color: #000000;
+}
+
+.red-text {
+  color: #FF0000;
+}
+/* ID selector */
+#blue-div {
+  color: #0000FF;
+}
+
+.done {
+  text-decoration: line-through;
+}
