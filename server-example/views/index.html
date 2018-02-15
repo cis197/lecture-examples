@@ -15,5 +15,5 @@ Hello add a todo
 <% if (typeof todos == 'object') { %>
   Todos
   <% todos.forEach(function(todo) { %>
-  <li><%= todo %></li>
+  <li><%= todo.text %> <a href="/todos/delete/<%= todo._id %>">Delete</a></li>
 <% }) } %>

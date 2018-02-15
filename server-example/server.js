@@ -19,19 +19,15 @@ app.use(cookieSession({
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.use((req, res, next) => {
-  console.log(`I am a middleware`);
-  next();
-})
-
 app.get('/', (req, res) => {
   return res.render('index', { flash: 'click a link'  });
 })
 
 app.use('/account', accountRouter)
 app.use('/todos', middlewares.adminCheck, todosRouter)
-
-
+app.use('*', (req, res) => {
+  return res.render('index', { flash: '404: page not found :/' });
+})
 app.use((err, req, res, next) => {
   return res.render('index', { flash: err.message });
 })
