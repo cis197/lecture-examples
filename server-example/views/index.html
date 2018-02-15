@@ -1,0 +1,19 @@
+<% include partials/navbar.html %>
+Hello add a todo
+
+<% if (typeof flash == 'string') { %>
+  <h3> <%= flash %> </h3>
+<% } %>
+
+<% if (typeof  loggedIn == 'boolean' && loggedIn === true) {  %>
+<form method="POST">
+  <input type="text" name="todo">
+  <button type="submit">Submit todo</button>
+</form>
+<% } %>
+
+<% if (typeof todos == 'object') { %>
+  Todos
+  <% todos.forEach(function(todo) { %>
+  <li><%= todo %></li>
+<% }) } %>
