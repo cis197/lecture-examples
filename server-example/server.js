@@ -1,5 +1,6 @@
 const express =  require('express');
 const middlewares = require('./middlewares');
+const todosRouter = require('./routes/todos').router;
 
 const app = express();
 
@@ -15,14 +16,18 @@ app.get('/', (req, res) => {
   return res.send('hello world');
 })
 
+app.use('/todos', todosRouter)
+
+app.get('/login', middlewares.login, middlewares.logout, (req, res) => {
+  return res.send('logged in and out');
+})
 
 app.get('/restricted', middlewares.adminCheck, (req, res) => {
   return res.send('hello restricted world');
 })
 
-
 app.use((err, req, res, next) => {
-  res.status(500).send(err.message);
+  return res.status(500).send(err.message);
 })
 
 app.listen(port,  () => {
