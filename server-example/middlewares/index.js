@@ -1,6 +1,6 @@
 const adminCheck = (req, res, next) => {
-  if (req.query.isAdmin === 'true') {
-    req.isAdmin = true;
+  console.log(req.session.isAdmin);
+  if (req.session.isAdmin === true) {
     next();
   } else {
     next(new Error('no permission'))
@@ -8,13 +8,13 @@ const adminCheck = (req, res, next) => {
 }
 
 const login = (req, res, next) => {
-  req.isAdmin = true;
+  req.session.isAdmin = true;
   console.log('logged in')
   next();
 }
 
 const logout = (req, res, next) => {
-  req.isAdmin = false;
+  req.session.isAdmin = false;
   console.log('logged out')
   next();
 }
