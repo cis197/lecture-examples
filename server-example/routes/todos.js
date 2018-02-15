@@ -12,6 +12,7 @@ const templateVars = (todos, flash) => {
     flash: (flash ? flash : '')
   }
 }
+
 router.route('/')
   .get((req, res) => {
     Todo.getAllTodos(function(err, data) {
@@ -40,5 +41,6 @@ router.get('/delete/:id', (req, res) => {
     else { res.redirect('/todos') }
   })
 })
+
 
 module.exports = { router }
