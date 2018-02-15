@@ -1,6 +1,6 @@
 // if time
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/lectureDb');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/lectureDb');
 
 const todoSchema = new mongoose.Schema({
   text: { type: String }
