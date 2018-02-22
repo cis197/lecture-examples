@@ -31,8 +31,21 @@ $(document).ready(function() {
       data = {};
     }
   }
+
+  function loadFromServer() {
+    $.ajax({
+           type: 'GET', 
+           url: 'http://localhost:3000/api',
+           success: function(obj)  {
+             data = obj.data.map(function(i) {
+                return { content: i.text, done: false }
+             })
+            renderFromData(data)
+           }
+    })
+  }
   
-  loadFromlocalStorage();
+  loadFromServer();
 
   // regular things
 
