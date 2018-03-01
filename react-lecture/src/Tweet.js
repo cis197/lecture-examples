@@ -32,13 +32,12 @@ class Tweet extends Component  {
 
   render() {
     return (
-      <div style={{ display: this.state.deleted === true ? 'none' : 'block' }}>
+      <div className="tweet" style={{ display: this.state.deleted === true ? 'none' : 'block' }}>
         <h3>Author: {this.props.author}</h3>
         <p>Content:  {this.props.content}</p>
         <p>Likes: {this.state.likes}</p>
         <button onClick={this.likeTweet.bind(this)} id="like">Like</button>
         <button onClick={this.deleteTweet.bind(this)} id="delete">Delete</button>
-        <hr/>
       </div>
     )
   }
