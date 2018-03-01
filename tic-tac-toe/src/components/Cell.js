@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { cellClick } from '../actions/index';
 
 class Cell extends Component {
   constructor(props) {
@@ -6,14 +7,10 @@ class Cell extends Component {
   }
 
   handleFn() {
-    this.props.store.dispatch({
-      type: 'CELL_CLICK',
-      id: this.props.id
-    })
+    this.props.store.dispatch(cellClick(this.props.id))
   }
 
   render() {
-    console.log(this.props.val)
     return (
       <div onClick={this.handleFn.bind(this)} className="square">
         {this.props.val}

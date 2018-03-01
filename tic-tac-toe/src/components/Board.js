@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Cell from './Cell';
-import initialState from './initialState';
+import initialState from '../constants/initialState';
+import { reset  } from '../actions/index';
 
 class Board extends Component {
   constructor(props) {
@@ -23,11 +24,10 @@ class Board extends Component {
     //}
   //} 
   
-  reset()  {
-    this.props.store.dispatch({
-      type: 'RESET'
-    })
+  resetCall()  {
+    this.props.store.dispatch(reset())
   }
+
   render() {
     let cells = this.state.cells.map( (i, idx) => { 
       return <Cell store={this.props.store} val={i} key={idx} id={idx}/> 
@@ -40,7 +40,7 @@ class Board extends Component {
         <div className="cell-container">
           {cells}
         </div>
-        <button onClick={this.reset.bind(this)}>Reset</button>
+        <button onClick={this.resetCall.bind(this)}>Reset</button>
       </div>
     )
   }

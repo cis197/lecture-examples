@@ -1,5 +1,5 @@
-import winner from './winner';
-import initialState from './initialState';
+import winner from '../helpers/winner';
+import initialState from '../constants/initialState';
 
 const boardReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -9,7 +9,7 @@ const boardReducer = (state = initialState, action) => {
       if (!state.cells[action.id] && !state.winner) {
         let s = Object.assign({}, state, {
           cells: [...state.cells.slice(0, action.id), state.player, ...state.cells.slice(action.id + 1)],
-          history: [...state.history, `${state.player} moved at ${action.id}`],
+          history: [...state.history, `${state.player} placed at ${action.id}. Time  elapsed: ${state.elapsed} seconds`],
           player: state.player === 'X' ? 'O' : 'X',
         })
         s.winner = winner(s.cells)
@@ -17,6 +17,8 @@ const boardReducer = (state = initialState, action) => {
       } else {
         return state
       }
+    case 'TICK':
+      return Object.assign({}, state, { elapsed: state.winner ? state.elapsed : state.elapsed + 1 })
     default:
       return state
   }
