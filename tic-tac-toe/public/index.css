@@ -1,0 +1,18 @@
+.square {
+  border: 1px solid black;
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+  display:inline-block;
+  float:left;
+  text-align:center;
+}
+
+.square:nth-child(3n+1) {
+  clear:left;
+}
+
+.cell-container {
+  display:block;
+  overflow:auto; 
+}
