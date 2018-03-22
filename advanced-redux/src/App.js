@@ -70,9 +70,12 @@ class Profile extends Component {
         <ConnectedEandF/>
         <input type="text" id="val"/>
         <button onClick={this.searchFn.bind(this)}>Search!</button>
+        <br/>
         <img src={this.props.data.avatar_url}/>
         <br/>
         {this.props.data.login}
+        <br/>
+        Followers: {this.props.data.followers}
       </div>
     )
   }
