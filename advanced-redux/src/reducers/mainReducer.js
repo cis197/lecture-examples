@@ -27,8 +27,20 @@ const fetchingReducer = (state=false, action) => {
   }
 }
 
+const authReducer = (state={ authenticated: false }, action) => {
+  switch(action.type) {
+    case 'LOGIN_USER':
+      return { authenticated: true }
+    case 'LOGOUT_USER':
+      return { authenticated:  false }
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   successReducer,
   errorReducer,
-  fetchingReducer
+  fetchingReducer,
+  authReducer
 })
