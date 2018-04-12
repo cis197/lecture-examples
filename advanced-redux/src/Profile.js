@@ -7,7 +7,7 @@ import searchProfile from './utils/searchProfile';
 class Profile extends Component {
 
   componentDidMount() {
-    this.props.search(this.props.match.params.user)
+    this.props.search(this.props.match.params.username)
   }
 
   searchFn() {

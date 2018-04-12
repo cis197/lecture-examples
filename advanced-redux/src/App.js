@@ -16,8 +16,8 @@ class App extends Component {
             <Link to='/search'> Search </Link>
             <Link to='/login'> Login </Link>
             <Switch>
-              <Route path="/about" component={About}/>
-              <Route path="/search/:user?" component={AuthHOC(Profile)}/>
+              <Route path="/about" component={AuthHOC(About)}/>
+              <Route path="/search/:username?" component={AuthHOC(Profile)}/>
               <Route path="/login" component={Login}/>
               <Route component={About}/>
             </Switch>
