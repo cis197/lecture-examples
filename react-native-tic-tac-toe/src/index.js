@@ -13,7 +13,7 @@ const initState = {
 const reducer = function(state=initState, action) {
   switch(action.type) {
     case 'MOVE':
-      if (!state.winner) {
+      if (!state.winner && state.cells[action.idx] === '') {
         var tempArray = [...state.cells];
         tempArray[action.idx] = state.player;
 
