@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>My site</title>
+  </head>
+  <body>
+    <form method="POST">
+      input todo:
+      <input name="todo"></input>
+      <button type="submit">Click to submit</button>
+    </form>
+
+  <% if (typeof todos == 'object') { %>
+    Todos
+    <% todos.forEach(function(todo) { %>
+    <li><%= todo.text %>
+      <a href="/delete/<%= todo._id %>">Delete</a>
+    </li>
+  <% }) } %>
+  </body>
+</html>
