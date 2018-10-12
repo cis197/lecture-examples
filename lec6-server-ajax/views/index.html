@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>My site</title>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <% if (authed) { %>
+      <h1>Hi you are logged in</h1>
+    <% } %>
+    Hi there from a file
+    <form method="POST">
+      Todo:
+      <input name="todotext" type="text"></input> <br/>
+      <button type="submit">Submit todo</button>
+    </form>
+  
+    <ul id="todos">
+    <% if (typeof todos == 'object') { %>
+      <% todos.forEach(function(todo) { %>
+      <li><%= todo.todoText %><a href="/delete/<%= todo._id %>">Delete</a></li>
+    <% }) } %>
+    </ul>
+  </body>
+  <script>
+    $(document).ready(function() {
+      // initiate an ajax request
+      setInterval( function () {
+        $.ajax({
+          url: '/api/getTodos',
+          type: 'GET',
+          success: function (res) {
+            // $('#todos').append('<li>' + res + '</li>');
+            var arr = [];
+            for (var  i = 0;  i < res.length; i++) {
+              arr.push('<li>' + res[i].todoText + '<a href="delete/' + res[i]._id + '">Delete</a></li>')
+            }
+            arr.join('') // concatenate array into a single string
+            $('#todos').html(arr);
+          }
+        })
+      }, 2000)
+    })
+  </script>
+</html>
