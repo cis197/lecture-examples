@@ -30,6 +30,7 @@ app.use(cookieSession({
 }))
 
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.get('/', function (req, res) {
   Todo.find({}, function (err, results) {
     res.render('index', { todos: results, authed: req.session.authed })
@@ -80,15 +81,22 @@ app.get('/logout', middleware, function (req, res) {
   res.redirect('/login');
 })
 
-app.get('/delete/:id', function (req, res) {
-  var id = req.params.id
-  Todo.deleteOne({ _id: id }, function (err, result) {
-    res.redirect('/');
-  })
-})
+//app.get('/delete/:id', function (req, res) {
+  //var id = req.params.id
+  //Todo.deleteOne({ _id: id }, function (err, result) {
+    //res.redirect('/');
+  //})
+//})
 
 app.get('/api/getTodos', function (req, res) {
   Todo.find({}, function (err,  results) {
+    res.json(results);
+  })
+})
+
+app.post('/api/delete', function (req, res) {
+  var id =  req.body.id;
+  Todo.deleteOne({ _id: id }, function (err,  results) {
     res.json(results);
   })
 })

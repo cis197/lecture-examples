@@ -35,13 +35,26 @@
             // $('#todos').append('<li>' + res + '</li>');
             var arr = [];
             for (var  i = 0;  i < res.length; i++) {
-              arr.push('<li>' + res[i].todoText + '<a href="delete/' + res[i]._id + '">Delete</a></li>')
+              arr.push('<li>' + res[i].todoText + '<span data-id="' + res[i]._id +'">Delete</span></li>')
             }
             arr.join('') // concatenate array into a single string
             $('#todos').html(arr);
           }
         })
       }, 2000)
+
+      // new stuff
+      $('ul').on('click', 'span', function () {
+        var  _id = $(this).data('id');
+        $.ajax({
+          url: '/api/delete',
+          type: 'POST',
+          data: { id: _id },
+          success: function (res) {
+            console.log(res);
+          }
+        })
+      })
     })
   </script>
 </html>
